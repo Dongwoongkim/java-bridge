@@ -24,12 +24,10 @@ public class BridgeMaker {
     }
 
     private void makeEachBridge(List<String> bridge) {
-        int generatedNumber = bridgeNumberGenerator.generate();
-        if (generatedNumber == 1) {
+        if (bridgeNumberGenerator.generate() == 1) {
             bridge.add("U");
+            return;
         }
-        if (generatedNumber == 0) {
-            bridge.add("D");
-        }
+        bridge.add("D");
     }
 }

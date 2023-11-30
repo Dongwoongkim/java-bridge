@@ -1,6 +1,5 @@
 package bridge.model;
 
-import bridge.model.vo.Movement;
 import java.util.List;
 
 /**
@@ -8,17 +7,54 @@ import java.util.List;
  */
 public class BridgeGame {
 
-    private final List<String> bridgeInfo;
+    private final List<String> answer;
+    private boolean gameEnd;
+    private Integer currentPosition;
+    private Integer trialCount;
 
-    public BridgeGame(List<String> bridgeInfo) {
-        this.bridgeInfo = bridgeInfo;
+    public BridgeGame(List<String> answer) {
+        this.answer = answer;
+        this.gameEnd = false;
+        this.currentPosition = 0;
+        this.trialCount = 1;
     }
 
-    public void move(String movement, Integer currentPosition) {
-        if (!bridgeInfo.get(currentPosition).equals(movement)) {
+    public void move(String sign) {
+        String currentAnswer = answer.get(currentPosition);
+        if (currentAnswer.equals(sign)) {
+            this.currentPosition++;
+            return;
         }
+        this.gameEnd = true;
     }
 
     public void retry() {
+        this.gameEnd = false;
+        this.currentPosition = 0;
+        this.trialCount++;
+    }
+
+    public void exit() {
+        this.gameEnd = true;
+    }
+
+    public boolean isGameEnd() {
+        return gameEnd;
+    }
+
+    public boolean isSuccess() {
+        return currentPosition == answer.size();
+    }
+
+    public Integer getTrialCount() {
+        return trialCount;
+    }
+
+    public Integer getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public List<String> getAnswer() {
+        return answer;
     }
 }
