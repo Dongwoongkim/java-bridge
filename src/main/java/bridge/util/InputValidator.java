@@ -5,11 +5,11 @@ public class InputValidator {
     private InputValidator() {
     }
 
-    public static void validateLength(String length) {
-        if (length.isEmpty()) {
+    public static void validateBridgeSize(String size) {
+        if (size.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        if (!isNumeric(length)) {
+        if (!isNumeric(size)) {
             throw new IllegalArgumentException();
         }
     }
