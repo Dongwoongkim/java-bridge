@@ -20,6 +20,7 @@ public class BridgeMaker {
         for (int start = 0; start < size; start++) {
             makeEachBridge(bridge);
         }
+        
         return bridge;
     }
 

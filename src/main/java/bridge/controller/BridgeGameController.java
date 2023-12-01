@@ -24,14 +24,11 @@ public class BridgeGameController {
 
     public void run() {
         outputView.printStartMessage();
-
         BridgeSize bridgeSize = initBridgeSize();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> answer = bridgeMaker.makeBridge(bridgeSize.getSize());
-        System.out.println(answer.toString());
-
-        BridgeGame bridgeGame = new BridgeGame(answer);
-        startGame(bridgeGame);
+        
+        startGame(new BridgeGame(answer));
     }
 
     private void startGame(BridgeGame bridgeGame) {

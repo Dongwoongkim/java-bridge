@@ -55,53 +55,22 @@ public class BridgeGame {
         String upper = "[";
         String downSide = "[";
 
-        // 이전 스탭
-        for (int i = 0; i < currentPosition - 1; i++) {
-            if (answer.get(i).equals("U")) {
-                upper += " O ";
-            }
+        upper = drawPreviousUpperSide(upper);
+        downSide = drawPreviousDownSide(downSide);
 
-            if (!answer.get(i).equals("U")) {
-                upper += "   ";
-            }
-
-            upper += "|";
-        }
-
-        for (int i = 0; i < currentPosition - 1; i++) {
-            if (answer.get(i).equals("D")) {
-                downSide += " O ";
-            }
-
-            if (!answer.get(i).equals("D")) {
-                downSide += "   ";
-            }
-
-            downSide += "|";
-        }
-
-        // 현재 스탭 U && 정답 U
         if (answer.get(currentPosition - 1).equals("U") && sign.equals("U")) {
             upper += " O ";
             downSide += "   ";
         }
-
-        // 현재 스탭 D && 정답 D
         if (answer.get(currentPosition - 1).equals("D") && sign.equals("D")) {
             downSide += " O ";
             upper += "   ";
         }
-
-        // 현재 스탭 D && 정답 U
         if (answer.get(currentPosition - 1).equals("U") && sign.equals("D")) {
-            System.out.println(3);
             downSide += " X ";
             upper += "   ";
         }
-
-        // 현재 스탭 U && 정답 D
         if (answer.get(currentPosition - 1).equals("D") && sign.equals("U")) {
-            System.out.println("4");
             downSide += "   ";
             upper += " X ";
         }
@@ -111,4 +80,29 @@ public class BridgeGame {
         return upper + "\n" + downSide;
     }
 
+    private String drawPreviousDownSide(String downSide) {
+        for (int i = 0; i < currentPosition - 1; i++) {
+            if (answer.get(i).equals("D")) {
+                downSide += " O ";
+            }
+            if (!answer.get(i).equals("D")) {
+                downSide += "   ";
+            }
+            downSide += "|";
+        }
+        return downSide;
+    }
+
+    private String drawPreviousUpperSide(String upper) {
+        for (int i = 0; i < currentPosition - 1; i++) {
+            if (answer.get(i).equals("U")) {
+                upper += " O ";
+            }
+            if (!answer.get(i).equals("U")) {
+                upper += "   ";
+            }
+            upper += "|";
+        }
+        return upper;
+    }
 }
