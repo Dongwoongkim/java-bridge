@@ -51,7 +51,7 @@ public class BridgeGame {
         return trialCount;
     }
 
-    public String getUpperSide(String sign) {
+    public String drawMap(String sign) {
         String upper = "[";
         String downSide = "[";
 

@@ -32,7 +32,6 @@ public class BridgeGameController {
 
         BridgeGame bridgeGame = new BridgeGame(answer);
         startGame(bridgeGame);
-        outputView.printResult(bridgeGame.isSuccess(), bridgeGame.getTrialCount());
     }
 
     private void startGame(BridgeGame bridgeGame) {
@@ -41,15 +40,16 @@ public class BridgeGameController {
             String sign = movement.getSign();
             bridgeGame.move(sign);
 
-            outputView.printMap(bridgeGame.getUpperSide(sign));
+            outputView.printMap(bridgeGame.drawMap(sign));
 
             checkGameEnd(bridgeGame);
-            checkGameSuccess(bridgeGame);
+            checkGameSuccess(bridgeGame, sign);
         }
     }
 
-    private void checkGameSuccess(BridgeGame bridgeGame) {
+    private void checkGameSuccess(BridgeGame bridgeGame, String sign) {
         if (bridgeGame.isSuccess()) {
+            outputView.printResult(bridgeGame.isSuccess(), bridgeGame.getTrialCount(), bridgeGame.drawMap(sign));
             bridgeGame.exit();
         }
     }
