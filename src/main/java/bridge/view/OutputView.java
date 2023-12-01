@@ -1,14 +1,13 @@
 package bridge.view;
 
-import java.util.List;
-
 public class OutputView {
 
     public void printStartMessage() {
         System.out.println("다리 건너기 게임을 시작합니다.\n");
     }
 
-    public void printMap(Integer currentPosition, List<String> answer, String sign) {
+    public void printMap(String upperSide) {
+        System.out.println(upperSide);
     }
 
     public void printResult(boolean isSuccess, Integer count) {

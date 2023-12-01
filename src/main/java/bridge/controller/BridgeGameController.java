@@ -32,26 +32,32 @@ public class BridgeGameController {
 
         BridgeGame bridgeGame = new BridgeGame(answer);
         startGame(bridgeGame);
-
         outputView.printResult(bridgeGame.isSuccess(), bridgeGame.getTrialCount());
     }
 
     private void startGame(BridgeGame bridgeGame) {
         while (!bridgeGame.isGameEnd()) {
             Movement movement = initMovement();
-            bridgeGame.move(movement.getSign());
+            String sign = movement.getSign();
+            bridgeGame.move(sign);
 
-            // TODO : 맵 출력
-            outputView.printMap(bridgeGame.getCurrentPosition(), bridgeGame.getAnswer(), movement.getSign());
+            outputView.printMap(bridgeGame.getUpperSide(sign));
 
-            if (bridgeGame.isGameEnd()) {
-                GameCommand gameCommand = initGameCommand();
-                checkRestart(bridgeGame, gameCommand);
-            }
+            checkGameEnd(bridgeGame);
+            checkGameSuccess(bridgeGame);
+        }
+    }
 
-            if (bridgeGame.isSuccess()) {
-                bridgeGame.exit();
-            }
+    private void checkGameSuccess(BridgeGame bridgeGame) {
+        if (bridgeGame.isSuccess()) {
+            bridgeGame.exit();
+        }
+    }
+
+    private void checkGameEnd(BridgeGame bridgeGame) {
+        if (bridgeGame.isGameEnd()) {
+            GameCommand gameCommand = initGameCommand();
+            checkRestart(bridgeGame, gameCommand);
         }
     }
 
@@ -72,7 +78,6 @@ public class BridgeGameController {
             }
         }
     }
-
 
     private Movement initMovement() {
         while (true) {
