@@ -1,6 +1,11 @@
 package bridge.model.vo;
 
+import bridge.exception.InvalidBridgeSizeException;
+
 public class BridgeSize {
+
+    private static final Integer MIN_SIZE = 3;
+    private static final Integer MAX_SIZE = 20;
 
     private final Integer size;
 
@@ -10,8 +15,8 @@ public class BridgeSize {
     }
 
     private void validate(Integer size) {
-        if (size <= 2 || size >= 21) {
-            throw new IllegalArgumentException();
+        if (size < MIN_SIZE || size > MAX_SIZE) {
+            throw new InvalidBridgeSizeException(MIN_SIZE, MAX_SIZE);
         }
     }
 

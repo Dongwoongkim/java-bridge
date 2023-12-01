@@ -1,5 +1,7 @@
 package bridge.model.vo;
 
+import bridge.exception.InvalidMovementException;
+
 public class Movement {
 
     private static final String UP = "U";
@@ -14,7 +16,7 @@ public class Movement {
 
     private void validate(String sign) {
         if (!sign.equals(UP) && !sign.equals(DOWN)) {
-            throw new IllegalArgumentException();
+            throw new InvalidMovementException(UP, DOWN);
         }
     }
 

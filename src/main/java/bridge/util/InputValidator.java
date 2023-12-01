@@ -1,5 +1,8 @@
 package bridge.util;
 
+import bridge.exception.InvalidBridgeSizeException;
+import bridge.exception.InvalidMovementException;
+
 public class InputValidator {
 
     private InputValidator() {
@@ -7,16 +10,16 @@ public class InputValidator {
 
     public static void validateBridgeSize(String size) {
         if (size.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new InvalidBridgeSizeException();
         }
         if (!isNumeric(size)) {
-            throw new IllegalArgumentException();
+            throw new InvalidBridgeSizeException();
         }
     }
 
     public static void validateMovement(String movement) {
         if (movement.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new InvalidMovementException();
         }
     }
 

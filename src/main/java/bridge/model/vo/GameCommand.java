@@ -1,5 +1,7 @@
 package bridge.model.vo;
 
+import bridge.exception.InvalidCommandException;
+
 public class GameCommand {
 
     private static final String EXIT_SIGN = "Q";
@@ -13,7 +15,7 @@ public class GameCommand {
 
     private void validate(String command) {
         if (!command.equals(EXIT_SIGN) && !command.equals(RESTART_SIGN)) {
-            throw new IllegalArgumentException();
+            throw new InvalidCommandException(EXIT_SIGN, RESTART_SIGN);
         }
     }
 
